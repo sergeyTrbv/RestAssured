@@ -1,6 +1,6 @@
 package data;
 
-public class ErrorResponseDTO {
+public class ErrorResponse {
     private String error;
 
     public String getError() {

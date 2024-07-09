@@ -1,13 +1,13 @@
 package data;
 
-public class LoginResponseDTO {
+public class Token {
     private String token;
 
-    public LoginResponseDTO(String token) {
+    public Token(String token) {
         this.token = token;
     }
 
-    public LoginResponseDTO() {
+    public Token() {
     }
 
     public String getToken() {

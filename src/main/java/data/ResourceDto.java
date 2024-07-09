@@ -10,7 +10,8 @@ public class ResourceDto {
     private List<DataUserDto> data;
     private SupportDto support;
 
-    public ResourceDto(Integer page, Integer per_page, Integer total, Integer total_pages, List<DataUserDto> data, SupportDto support) {
+    public ResourceDto(Integer page, Integer per_page, Integer total, Integer total_pages,
+                       List<DataUserDto> data, SupportDto support) {
         this.page = page;
         this.per_page = per_page;
         this.total = total;

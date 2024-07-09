@@ -2,15 +2,16 @@ package data;
 
 import java.util.List;
 
-public class ResourceDto2 {
+public class ResourceColorDto {
     private Integer page;
     private Integer per_page;
     private Integer total;
     private Integer total_pages;
-    private List<DataColorDto> data;
+    private List<ColorDto> data;
     private SupportDto support;
 
-    public ResourceDto2(Integer page, Integer per_page, Integer total, Integer total_pages, List<DataColorDto> data, SupportDto support) {
+    public ResourceColorDto(Integer page, Integer per_page, Integer total, Integer total_pages,
+                            List<ColorDto> data, SupportDto support) {
         this.page = page;
         this.per_page = per_page;
         this.total = total;
@@ -19,7 +20,7 @@ public class ResourceDto2 {
         this.support = support;
     }
 
-    public ResourceDto2() {
+    public ResourceColorDto() {
         super();
     }
 
@@ -55,11 +56,11 @@ public class ResourceDto2 {
         this.total_pages = total_pages;
     }
 
-    public List<DataColorDto> getData() {
+    public List<ColorDto> getData() {
         return data;
     }
 
-    public void setData(List<DataColorDto> data) {
+    public void setData(List<ColorDto> data) {
         this.data = data;
     }
 

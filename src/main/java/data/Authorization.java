@@ -1,20 +1,19 @@
 package data;
 
-public class LoginRequestDTO {
+public class Authorization {
     private String email;
     private String password;
 
-
-    public LoginRequestDTO(String email, String password) {
+    public Authorization(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public LoginRequestDTO() {
+    public Authorization(String email) {
+        this.email = email;
     }
 
-    public LoginRequestDTO(String email) {
-        this.email = email;
+    public Authorization() {
     }
 
     public String getEmail() {
@@ -33,4 +32,3 @@ public class LoginRequestDTO {
         this.password = password;
     }
 }
-

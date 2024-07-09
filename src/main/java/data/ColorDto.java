@@ -1,13 +1,13 @@
 package data;
 
-public class DataColorDto {
+public class ColorDto {
     private Integer id;
     private String name;
     private Integer year;
     private String color;
     private String pantone_value;
 
-    public DataColorDto(Integer id, String name, Integer year, String color, String pantone_value) {
+    public ColorDto(Integer id, String name, Integer year, String color, String pantone_value) {
         this.id = id;
         this.name = name;
         this.year = year;
@@ -15,7 +15,7 @@ public class DataColorDto {
         this.pantone_value = pantone_value;
     }
 
-    public DataColorDto() {
+    public ColorDto() {
     }
 
 
