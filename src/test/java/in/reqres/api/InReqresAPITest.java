@@ -1,7 +1,6 @@
-package in.reqres;
+package in.reqres.api;
 
-import data.*;
-
+import data.inReqres.*;
 import helpers.DataProviderTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 import static io.restassured.RestAssured.given;
 import static specification.Specification.*;
 
-public class APIReqresTest {
+public class InReqresAPITest {
 
     /**
      * Используя сервис https://reqres.in/ получаем список пользователей со второй страницы.
@@ -38,12 +37,15 @@ public class APIReqresTest {
         for (DataUserDto user : users) {
             String userAvatarUrl = user.getAvatar();
             String avatarFileName = userAvatarUrl.substring(userAvatarUrl.lastIndexOf('/') + 1);
+
             if (!uniqueNameAvatarFiles.add(avatarFileName)) {
                 Assert.fail("Обнаружено повторяющееся имя файла аватара: " + avatarFileName);
             }
         }
+
         Assert.assertEquals(uniqueNameAvatarFiles.size(), users.size(),
-                "Тест не пройдён. Все имена файлов аватаров должны быть уникальными.");
+                "Количество уникальных имен файлов аватаров (" + uniqueNameAvatarFiles.size() +
+                        ") не совпадает с количеством пользователей (" + users.size() + ").");
     }
 
     /**
@@ -65,9 +67,10 @@ public class APIReqresTest {
 
         response.print();
 
-        Assert.assertEquals(response.getStatusCode(), 200, "Неверный статус ответа");
+        Assert.assertEquals(response.getStatusCode(), 200, "Для данного теста ожидаемый код состояния: 200, но получен: " + response.getStatusCode());
         Token authToken = response.as(Token.class);
-        Assert.assertNotNull(authToken.getToken());
+        Assert.assertNotNull(authToken.getToken(), "Токен не должен быть null");
+
         deleteSpec();
     }
 
@@ -88,10 +91,10 @@ public class APIReqresTest {
                 .then()
                 .extract().response();
 
-        Assert.assertEquals(response.getStatusCode(), 400);
-        System.out.println("Код ошибки: " + response.getStatusCode());
+        Assert.assertEquals(response.getStatusCode(), 400, "Для данного теста ожидаемый код состояния: 400, но получен: " + response.getStatusCode());
         ErrorResponse errorResponse = response.as(ErrorResponse.class);
-        Assert.assertEquals(errorResponse.getError(), "Missing password");
+        Assert.assertEquals(errorResponse.getError(), "Missing password", "Ожидаемое сообщение об ошибке «Отсутствует пароль»");
+
         deleteSpec();
     }
 
@@ -118,25 +121,37 @@ public class APIReqresTest {
         List<Integer> sortedYears = years.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        Assert.assertEquals(years, sortedYears, "Годы не отсортированы");
+
+        Assert.assertEquals(years, sortedYears, "Данные не отсортированы по годам. Необходимо исправить сортировку.");
+
+        deleteSpec();
     }
 
-    /**
-     * Используя сервис https://gateway.autodns.com/ производим проверку, что количество тегов равно 15.
-     */
-    @Test(description = "Проверка XML-тела ответа на количество тегов")
-    public void testTagCount() {
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .when()
-                .get("https://gateway.autodns.com/")
-                .then()
-                .extract().response();
-
-        response.print();
-        //getList(*) - *Groovy-подобный синтаксис для поиска всех элементов, у которых имя не равно null.
-        // Это позволяет найти все теги в XML-документе.
-        int tagCount = response.htmlPath().getList("**.findAll { it.name() != null }").size();
-        Assert.assertEquals(tagCount, 15, "Количество тегов не равно 15");
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

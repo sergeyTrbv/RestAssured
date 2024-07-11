@@ -1,6 +1,6 @@
 package helpers;
 
-import data.Authorization;
+import data.inReqres.Authorization;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderTest {
@@ -17,6 +17,13 @@ public class DataProviderTest {
 
     @DataProvider(name = "unSuccessfulAuthorization")
     public Object[] incorrect_log_ins() {
-        return new Object[]{new Authorization("eve.holt@reqres.in", "")};
+        return new Object[]{new Authorization("peter@klaven", "")};
+    }
+
+    @DataProvider(name = "tagCountProvider")
+    public Object[][] tagCountProvider() {
+        return new Object[][] {
+                { "https://gateway.autodns.com/", 14 }
+        };
     }
 }

@@ -1,4 +1,4 @@
-package data;
+package data.inReqres;
 
 import java.util.List;
 

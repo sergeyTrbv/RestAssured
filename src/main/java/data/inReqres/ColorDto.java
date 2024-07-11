@@ -1,4 +1,4 @@
-package data;
+package data.inReqres;
 
 public class ColorDto {
     private Integer id;
