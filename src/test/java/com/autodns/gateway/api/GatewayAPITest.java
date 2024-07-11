@@ -7,10 +7,18 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
+/**
+ * Класс {@code GatewayAPITest} для тестирования API сервиса https://gateway.autodns.com/.
+ *
+ * @author SergeyTrbv
+ */
 public class GatewayAPITest {
 
     /**
-     * Используя сервис https://gateway.autodns.com/ производим проверку, что количество тегов равно 14.
+     * Метод {@code testTagCount} для проверки количества тегов в XML-теле ответа.
+     *
+     * @param url              URL для запроса
+     * @param expectedTagCount Ожидаемое количество тегов в ответе
      */
     @Test(description = "Проверка XML-тела ответа на количество тегов",
             dataProvider = "tagCountProvider", dataProviderClass = DataProviderTest.class)

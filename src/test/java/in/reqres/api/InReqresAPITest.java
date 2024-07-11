@@ -1,6 +1,6 @@
 package in.reqres.api;
 
-import data.inReqres.*;
+import data.*;
 import helpers.DataProviderTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -14,11 +14,17 @@ import java.util.stream.Collectors;
 import static io.restassured.RestAssured.given;
 import static specification.Specification.*;
 
+/**
+ * Класс {@code InReqresAPITest} для тестирования API сервиса https://reqres.in/.
+ *
+ * @author SergeyTrbv
+ */
 public class InReqresAPITest {
 
     /**
-     * Используя сервис https://reqres.in/ получаем список пользователей со второй страницы.
-     * Проверяем, что имена файлов аватаров пользователей уникальны
+     * Метод {@code UniqueAvatarFileNamesTest} для проверки уникальности имен файлов аватаров пользователей.
+     *
+     * @param page Номер страницы для запроса
      */
     @Test(description = "Проверка уникальности имен файлов аватаров пользователей",
             dataProvider = "pageNumber", dataProviderClass = DataProviderTest.class)
@@ -49,8 +55,9 @@ public class InReqresAPITest {
     }
 
     /**
-     * Используя сервис https://reqres.in/ тестируем авторизацию пользователя в системе.
-     * Тест на успешную авторизацию пользователя
+     * Метод {@code successfulAuthorizationTest} для тестирования успешной авторизации пользователя.
+     *
+     * @param authorization Объект авторизации
      */
     @Test(description = "Тест на авторизацию пользователя (успешная)",
             dataProvider = "successfulAuthorization", dataProviderClass = DataProviderTest.class)
@@ -75,8 +82,9 @@ public class InReqresAPITest {
     }
 
     /**
-     * Используя сервис https://reqres.in/ тестируем авторизацию пользователя в системе.
-     * Тест с ошибкой авторизации из-за не введённого пароля
+     * Метод {@code unSuccessfulAuthorizationTest} для тестирования ошибки авторизации из-за не введённого пароля.
+     *
+     * @param authorization Объект авторизации
      */
     @Test(description = "Тест на авторизацию пользователя (с ошибкой из-за не введённого пароля)",
             dataProvider = "unSuccessfulAuthorization", dataProviderClass = DataProviderTest.class)
@@ -100,8 +108,7 @@ public class InReqresAPITest {
 
 
     /**
-     * Используя сервис https://reqres.in/ тестируем что операция LIST <RESOURCE>
-     * возвращает данные отсортированные по годам
+     * Метод {@code dataSortedByYearTest} для тестирования отсортированных данных по годам.
      */
     @Test(description = "Тест на отсортированные данные по годам")
     public void dataSortedByYearTest() {
@@ -126,7 +133,6 @@ public class InReqresAPITest {
 
         deleteSpec();
     }
-
 }
 
 
