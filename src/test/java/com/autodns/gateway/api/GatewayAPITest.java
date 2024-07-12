@@ -16,6 +16,9 @@ public class GatewayAPITest {
 
     /**
      * Метод {@code testTagCount} для проверки количества тегов в XML-теле ответа.
+     * <p>
+     * getList(*) - *Groovy-подобный синтаксис для поиска всех элементов, у которых имя не равно null.
+     * Это позволяет найти все теги в XML-документе.
      *
      * @param url              URL для запроса
      * @param expectedTagCount Ожидаемое количество тегов в ответе
@@ -31,11 +34,10 @@ public class GatewayAPITest {
                 .extract().response();
 
         response.print();
-        //getList(*) - *Groovy-подобный синтаксис для поиска всех элементов, у которых имя не равно null.
-        // Это позволяет найти все теги в XML-документе.
         int tagCount = response.htmlPath().getList("**.findAll { it.name() != null }").size();
 
-        Assert.assertEquals(tagCount, expectedTagCount, "Ожидалось " + expectedTagCount + " тегов, но найдено " + tagCount + " тегов.");
+        Assert.assertEquals(tagCount, expectedTagCount, "Ожидалось " + expectedTagCount +
+                " тегов, но найдено " + tagCount + " тегов.");
     }
 }
 

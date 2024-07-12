@@ -74,7 +74,8 @@ public class InReqresAPITest {
 
         response.print();
 
-        Assert.assertEquals(response.getStatusCode(), 200, "Для данного теста ожидаемый код состояния: 200, но получен: " + response.getStatusCode());
+        Assert.assertEquals(response.getStatusCode(), 200, "Для данного теста ожидаемый код " +
+                "состояния: 200, но получен: " + response.getStatusCode());
         Token authToken = response.as(Token.class);
         Assert.assertNotNull(authToken.getToken(), "Токен не должен быть null");
 
@@ -99,9 +100,11 @@ public class InReqresAPITest {
                 .then()
                 .extract().response();
 
-        Assert.assertEquals(response.getStatusCode(), 400, "Для данного теста ожидаемый код состояния: 400, но получен: " + response.getStatusCode());
+        Assert.assertEquals(response.getStatusCode(), 400, "Для данного теста ожидаемый " +
+                "код состояния: 400, но получен: " + response.getStatusCode());
         ErrorResponse errorResponse = response.as(ErrorResponse.class);
-        Assert.assertEquals(errorResponse.getError(), "Missing password", "Ожидаемое сообщение об ошибке «Отсутствует пароль»");
+        Assert.assertEquals(errorResponse.getError(), "Missing password",
+                "Ожидаемое сообщение об ошибке «Отсутствует пароль»");
 
         deleteSpec();
     }
@@ -129,7 +132,8 @@ public class InReqresAPITest {
                 .sorted()
                 .collect(Collectors.toList());
 
-        Assert.assertEquals(years, sortedYears, "Данные не отсортированы по годам. Необходимо исправить сортировку.");
+        Assert.assertEquals(years, sortedYears, "Данные не отсортированы по годам. " +
+                "Необходимо исправить сортировку.");
 
         deleteSpec();
     }
